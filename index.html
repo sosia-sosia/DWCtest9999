@@ -427,6 +427,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   background-position:center;
   z-index:0;
   pointer-events:none;
+  filter:var(--bg-filter, none);
 }
 #enemy-area.torch::before { animation:torch-flicker 5s ease-in-out infinite; }
 #enemy-area.wave::before  { animation:bg-noise-pulse 5s linear infinite; }
@@ -1278,10 +1279,11 @@ function getBgImg(stage){
     return stage>=4?'hajimari2.png':'hajimari1.png';
   }
   if(G.areaId===2){
-    if(stage>=7) return 'temple4.png';
-    if(stage>=4) return 'temple3.png';
-    if(stage>=2) return 'temple2.png';
-    return 'temple1.png';
+    // bg1.pngを赤寄りフィルターで使い回す
+    if(stage>=7) return 'bg4.png';
+    if(stage>=4) return 'bg3.png';
+    if(stage>=2) return 'bg2.png';
+    return 'bg1.png';
   }
   if(stage>=9) return 'bg4.png';
   if(stage>=6) return 'bg3.png';
@@ -4834,6 +4836,12 @@ function updateUI(){
       _eaBg.style.setProperty('--bg-url',_bgUrl);
       _eaBg._lastBgUrl=_bgUrl;
     }
+    // 炎の神殿は背景を赤寄りにフィルターで色変え（::before擬似要素のみに適用）
+    const _bgFilter=G.areaId===2?'hue-rotate(330deg) saturate(1.8) brightness(0.85)':'none';
+    if(_eaBg._lastBgFilter!==_bgFilter){
+      _eaBg.style.setProperty('--bg-filter',_bgFilter);
+      _eaBg._lastBgFilter=_bgFilter;
+    }
     const _wantClass=G.stage<(G.areaId===2?5:9)?'torch':'wave';
     if(!_eaBg.classList.contains(_wantClass)){
       _eaBg.classList.remove('torch','wave');
@@ -4856,22 +4864,17 @@ function updateUI(){
       :G.areaId===2
         ?(_isFinal2?'scale-boss':G.stage>=7?'scale-large':G.stage>=4?'scale-mid':'scale-small')
         :(G.stage===15?'scale-boss':G.stage>=14?'scale-large':G.stage>=9?'scale-mid':'scale-small');
-    if(!spriteEl._currentSrc||spriteEl._currentSrc!==imgSrc){
+    const _cacheKey=imgSrc+'||'+((e&&e.filter)||'');
+    if(!spriteEl._currentSrc||spriteEl._currentSrc!==_cacheKey){
       spriteEl.innerHTML='';
       spriteEl.style.backgroundImage='none';
       const img=document.createElement('img');
       img.src=imgSrc;
       img.className='enemy-img '+sizeClass;
-      // 敵データにfilterプロパティがあれば適用（同じ画像素材を色違いで使い回す）
       img.style.filter=(e&&e.filter)||'';
       img.onerror=()=>{spriteEl.textContent=e.icon;};
       spriteEl.appendChild(img);
-      spriteEl._currentSrc=imgSrc;
-      spriteEl._currentFilter=(e&&e.filter)||'';
-    } else if(spriteEl._currentFilter!==((e&&e.filter)||'')){
-      // 同じ画像でもfilterが変わった場合（連戦で同画像・別カラーの敵が続く場合）は更新
-      const existingImg=spriteEl.querySelector('img');
-      if(existingImg){ existingImg.style.filter=(e&&e.filter)||''; }
+      spriteEl._currentSrc=_cacheKey;
       spriteEl._currentFilter=(e&&e.filter)||'';
     }
   } else {
