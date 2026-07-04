@@ -956,7 +956,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
           <div style="font-family:'Cinzel',serif;font-size:14px;color:#e07030;font-weight:bold;">炎の神殿</div>
           <div style="font-size:10px;color:#aaa;font-family:sans-serif;margin-top:3px;">灼熱の炎に満ちた神殿 ★★★★ 10ステージ</div>
         </div>
-        <div style="font-size:10px;color:#4aff88;font-family:sans-serif;background:rgba(74,255,136,.1);border:1px solid rgba(74,255,136,.4);border-radius:4px;padding:2px 8px;">プレイ可能</div>
+        <div style="font-size:10px;color:#e0a030;font-family:sans-serif;background:rgba(224,160,48,.1);border:1px solid rgba(224,160,48,.4);border-radius:4px;padding:2px 8px;">調整中</div>
       </div>
       <!-- 開発予定 -->
       <div style="background:rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;opacity:0.5;">
@@ -1321,16 +1321,16 @@ const CAVE_ENEMIES=[
 // 同じimg（例：cave_enemy3.pngを流用）でも色味を変えて表示できます（CSSフィルター適用）。
 // 例）filter:'hue-rotate(180deg) brightness(0.9)' で青系→赤系などに変換可能。
 const TEMPLE_ENEMIES=[
-  {name:'炎蛇',       icon:'🐍',hp:55,  atk:8,  shield:0,  pattern:['atk','poisonatk','big'],                                        boss:false, img:'temple_enemy1.png'},
-  {name:'火炎スライム',icon:'🔥',hp:65,  atk:10, shield:0,  pattern:['atk','big','atk','ignite'],                                     boss:false, img:'temple_enemy2.png'},
-  {name:'灼熱ゴブリン',icon:'👹',hp:75,  atk:11, shield:5,  pattern:['atk','ignite','big','atk'],                                     boss:false, img:'temple_enemy3.png'},
-  {name:'溶岩ゴーレム',icon:'🗿',hp:110, atk:13, shield:15, pattern:['bigdef','atk','big','bigdef'],                                  boss:false, img:'temple_enemy4.png'},
-  {name:'炎龍の幼体',  icon:'🐲',hp:130, atk:14, shield:10, pattern:['atk','poisonatk','big','bigdef','atk'],                         boss:false, img:'temple_enemy5.png'},
-  {name:'灰燼の騎士',  icon:'🖤',hp:160, atk:16, shield:20, pattern:['atk','ignite','big','bigdef','weaken_e'],                       boss:false, img:'temple_enemy6.png'},
-  {name:'火神官',      icon:'🧙',hp:180, atk:17, shield:15, pattern:['bigcurse','ignite','summon','big','atk'],                       boss:false, img:'temple_enemy7.png'},
-  {name:'炎巨人',      icon:'🧌',hp:220, atk:19, shield:20, pattern:['bigdef','quake','big','superbigdef','ignite'],                  boss:false, img:'temple_enemy8.png'},
-  {name:'煉獄の守護者',icon:'👿',hp:290, atk:22, shield:25, pattern:['ignite','bigcurse','big','superbigdef','bigheal'],              boss:false, img:'temple_enemy9.png'},
-  {name:'炎の神　ヴルカヌス',icon:'🌋',hp:450, atk:28, shield:35, pattern:['enervate','big','ignite','reflect_e','bigheal'],          boss:true,  img:'temple_enemy10.png'},
+  {name:'ブレイズラビット',  icon:'🐇',hp:55,  atk:8,  shield:0,  pattern:['atk','poisonatk','big'],                                        boss:false, img:'cave_enemy2.png', filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズゴブリン',  icon:'👹',hp:65,  atk:10, shield:0,  pattern:['atk','big','atk','ignite'],                                     boss:false, img:'enemy1.png',      filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズコボルト',  icon:'🐲',hp:75,  atk:11, shield:5,  pattern:['atk','ignite','big','atk'],                                     boss:false, img:'enemy2.png',      filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズスライム',  icon:'🔥',hp:110, atk:13, shield:15, pattern:['bigdef','atk','big','bigdef'],                                  boss:false, img:'cave_enemy1.png', filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズオーク',    icon:'🧌',hp:130, atk:14, shield:10, pattern:['atk','poisonatk','big','bigdef','atk'],                         boss:false, img:'enemy3.png',      filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズスケルトン',icon:'💀',hp:160, atk:16, shield:20, pattern:['atk','ignite','big','bigdef','weaken_e'],                       boss:false, img:'enemy4.png',      filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズマンイーター',icon:'🌿',hp:180,atk:17, shield:15, pattern:['bigcurse','ignite','summon','big','atk'],                      boss:false, img:'cave_enemy4.png', filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズゴーレム',  icon:'🗿',hp:220, atk:19, shield:20, pattern:['bigdef','quake','big','superbigdef','ignite'],                  boss:false, img:'enemy6.png',      filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズトロール',  icon:'🧌',hp:290, atk:22, shield:25, pattern:['ignite','bigcurse','big','superbigdef','bigheal'],              boss:false, img:'cave_enemy5.png', filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
+  {name:'ブレイズデーモン',  icon:'😈',hp:450, atk:28, shield:35, pattern:['enervate','big','ignite','reflect_e','bigheal'],               boss:true,  img:'enemy14.png',     filter:'hue-rotate(330deg) saturate(2.0) brightness(1.05)'},
 ];
 // カード挙動テスト用サンドバッグ（反撃なし・HP実質無限）
 const SANDBAG_ENEMY={name:'サンドバッグ（テスト用）',icon:'🛡️',hp:9999,atk:0,shield:0,pattern:['def'],boss:false,img:null};
