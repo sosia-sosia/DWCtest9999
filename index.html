@@ -5,7 +5,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="DWicon.png">
   <link rel="icon" type="image/png" sizes="180x180" href="DWicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>DUNGEON WALKER DWCver269</title>
+<title>DUNGEON WALKER DWCver270</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 :root{--bg:#07050e;--panel:#110d1a;--panel2:#180f28;--border:#2a1e42;--gold:#c9a84c;--text:#e8dcc8;--dim:#5a4a3a;--common:#8a9aaa;--uncommon:#50b450;--rare:#4a8aff;--epic:#d040ff;--legendary:#ff9500;}
@@ -752,7 +752,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#b8d4ff;letter-spacing:8px;text-shadow:0 0 20px rgba(100,160,255,.8),0 0 40px rgba(100,160,255,.3),1px 1px 0 #0a2060;text-align:center;">CHARGE</div>
     <div style="height:2px;width:220px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin-top:6px;"></div>
     <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,.5);letter-spacing:3px;">CARD BATTLE RPG</div>
-    <div style="font-family:sans-serif;font-size:9px;color:rgba(201,168,76,.35);letter-spacing:1px;margin-top:2px;">ver269</div>
+    <div style="font-family:sans-serif;font-size:9px;color:rgba(201,168,76,.35);letter-spacing:1px;margin-top:2px;">ver270</div>
     <div style="font-family:'Cinzel',serif;font-size:12px;color:rgba(201,168,76,.7);letter-spacing:4px;animation:logo-pulse 1.5s ease-in-out infinite;margin-top:10px;">▶ TAP TO START</div>
   </div>
 
@@ -1157,7 +1157,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   </div>
   
   <div id="ov-area-confirm" style="display:none;position:fixed;inset:0;z-index:5200;background:rgba(0,0,0,.75);align-items:center;justify-content:center;">
-    <div id="acp-box" style="background:linear-gradient(160deg,#1a0a2e,#0a0a1a);border:2px solid rgba(201,168,76,.7);border-radius:14px;padding:20px 24px;max-width:300px;width:88%;font-family:sans-serif;display:flex;flex-direction:column;gap:12px;align-items:center;">
+    <div id="acp-box" style="background:linear-gradient(160deg,#1a0a2e,#0a0a1a);border:2px solid rgba(201,168,76,.7);border-radius:14px;padding:20px 24px;max-width:300px;width:88%;font-family:sans-serif;display:flex;flex-direction:column;gap:12px;align-items:center;text-shadow:0 1px 4px rgba(0,0,0,.9);">
       <div id="acp-name" style="font-family:'Cinzel',serif;font-size:18px;color:#c9a84c;font-weight:bold;text-align:center;"></div>
       <div id="acp-difficulty" style="font-size:18px;color:#ffe44e;letter-spacing:4px;"></div>
       <div style="height:1px;width:100%;background:rgba(201,168,76,.3);"></div>
@@ -5075,7 +5075,7 @@ function showAreaConfirm(idx){
   const box=document.getElementById('acp-box');
   if(box){
     if(a.popupBg){
-      box.style.backgroundImage='linear-gradient(rgba(15,8,25,.72),rgba(15,8,25,.72)), url('+a.popupBg+')';
+      box.style.backgroundImage='linear-gradient(rgba(15,8,25,.32),rgba(15,8,25,.32)), url('+a.popupBg+')';
       box.style.backgroundSize='cover';
       box.style.backgroundPosition='center';
     } else {
