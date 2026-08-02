@@ -5,7 +5,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="DWicon.png">
   <link rel="icon" type="image/png" sizes="180x180" href="DWicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>DUNGEON WALKER DWCver270</title>
+<title>DUNGEON WALKER DWCver292</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 :root{--bg:#07050e;--panel:#110d1a;--panel2:#180f28;--border:#2a1e42;--gold:#c9a84c;--text:#e8dcc8;--dim:#5a4a3a;--common:#8a9aaa;--uncommon:#50b450;--rare:#4a8aff;--epic:#d040ff;--legendary:#ff9500;}
@@ -26,7 +26,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     flex-shrink:0;
   }
   /* fixed要素をappの幅に収める（#app内側の要素） */
-  .overlay:not(#ov-over):not(#ov-clear):not(#ov-admin):not(#ov-monster-viewer):not(#ov-save-delete-confirm):not(#ov-gamedata):not(#ov-achievements):not(#ov-main-menu):not(#ov-soul-setup):not(#ov-deck-edit):not(#ov-area-select):not(#ov-charge-select){position:absolute !important;}
+  .overlay:not(#ov-over):not(#ov-clear):not(#ov-admin):not(#ov-monster-viewer):not(#ov-save-delete-confirm):not(#ov-gamedata):not(#ov-achievements):not(#ov-main-menu):not(#ov-soul-setup):not(#ov-deck-edit):not(#ov-area-select):not(#ov-charge-select):not(#ov-shop){position:absolute !important;}
   /* ov-over/ov-clear は動的生成に変更したため position指定不要 */
   #ov-curtain,#confirm-box{position:absolute !important;width:100% !important;}
   #turn-slide{position:absolute !important;}
@@ -39,7 +39,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
      position:fixedのまま画面中央に420px幅で表示する */
   #start-screen,#tap-to-start-screen,#op-screen,
   #company-logo-screen,#logo-screen,
-  #ov-admin,#ov-monster-viewer,#ov-save-delete-confirm,#ov-gamedata,#ov-achievements,#ov-main-menu,#ov-soul-setup,#ov-deck-edit,#ov-area-select,#ov-charge-select{
+  #ov-admin,#ov-monster-viewer,#ov-save-delete-confirm,#ov-gamedata,#ov-achievements,#ov-main-menu,#ov-soul-setup,#ov-deck-edit,#ov-area-select,#ov-charge-select,#ov-shop{
     position:fixed !important;
     left:50% !important;
     right:auto !important;
@@ -311,6 +311,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 .ov-title{font-size:22px;color:var(--gold);letter-spacing:4px;text-shadow:0 0 24px rgba(201,168,76,.7);text-align:center;margin-top:12px;}
 .ov-sub{font-size:12px;color:var(--dim);font-style:italic;text-align:center;line-height:1.8;font-family:sans-serif;}
 .ov-btn{font-size:11px;color:var(--gold);letter-spacing:2px;background:rgba(30,22,8,.82);border:1px solid rgba(201,168,76,.45);border-radius:8px;padding:11px 24px;cursor:pointer;touch-action:manipulation;}
+/* メニューの画像ボタン：背景画像が読み込めた場合はテキストを隠し、読み込めなかった場合はテキストを表示する */
+.menu-img-btn{position:relative;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;padding:0;}
+.menu-img-btn .menu-btn-fallback{display:none;align-items:center;justify-content:center;gap:6px;font-family:sans-serif;font-size:13px;color:#fff;font-weight:bold;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7);width:100%;height:100%;letter-spacing:0;}
+.menu-img-btn.no-img{background:linear-gradient(160deg,rgba(40,30,20,.85),rgba(15,10,8,.9));}
+.menu-img-btn.no-img .menu-btn-fallback{display:flex;}
 .ov-btn:active{background:rgba(201,168,76,.25);}
 .ov-btn.danger{color:#e74c3c;border-color:rgba(231,76,60,.45);background:rgba(231,76,60,.08);}
 
@@ -752,7 +757,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
     <div style="font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:#b8d4ff;letter-spacing:8px;text-shadow:0 0 20px rgba(100,160,255,.8),0 0 40px rgba(100,160,255,.3),1px 1px 0 #0a2060;text-align:center;">CHARGE</div>
     <div style="height:2px;width:220px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin-top:6px;"></div>
     <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,.5);letter-spacing:3px;">CARD BATTLE RPG</div>
-    <div style="font-family:sans-serif;font-size:9px;color:rgba(201,168,76,.35);letter-spacing:1px;margin-top:2px;">ver270</div>
+    <div style="font-family:sans-serif;font-size:9px;color:rgba(201,168,76,.35);letter-spacing:1px;margin-top:2px;">ver292</div>
     <div style="font-family:'Cinzel',serif;font-size:12px;color:rgba(201,168,76,.7);letter-spacing:4px;animation:logo-pulse 1.5s ease-in-out infinite;margin-top:10px;">▶ TAP TO START</div>
   </div>
 
@@ -810,6 +815,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="ov-btn" id="btn-admin-start" style="background:rgba(231,76,60,.15);border-color:rgba(231,76,60,.6);color:#e74c3c;font-weight:bold;">▶ 選択ステージで開始</div>
   <div class="ov-btn" id="btn-admin-cardtest" style="background:rgba(80,120,200,.15);border-color:rgba(80,120,200,.6);color:#7db8f7;font-weight:bold;">🧪 カード挙動テスト（実戦画面）</div>
   <div class="ov-btn" id="btn-admin-monsterview" style="background:rgba(160,80,200,.15);border-color:rgba(160,80,200,.6);color:#c87df0;font-weight:bold;">🖼️ モンスター画像確認</div>
+  <div class="ov-btn" id="btn-admin-deckgrant" style="background:rgba(120,200,140,.15);border-color:rgba(120,200,140,.6);color:#7ed6a0;font-weight:bold;">🔧 デッキ編集：入れ替え枠+1＆DP上限+3＆カード1枚入手</div>
+  <div class="ov-btn" id="btn-admin-deckreset" style="background:rgba(200,120,120,.15);border-color:rgba(200,120,120,.6);color:#e08a8a;font-weight:bold;">🔧 デッキ編集：テストデータをリセット</div>
   <div style="font-size:8px;color:#888;text-align:center;margin-top:-4px;font-family:sans-serif;">※手札枚数依存のカード（捨て身等）は手札105枚基準の数値になります</div>
   <div class="ov-btn" id="btn-admin-close" style="font-size:10px;">閉じる</div>
 </div>
@@ -861,13 +868,48 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div style="height:142px;flex-shrink:0;"></div>
   <div id="menu-btn-area" class="ov-btn" style="width:100%;height:90px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;background-image:url(menu_eria.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
-    <div id="menu-btn-soul" class="ov-btn" style="height:70px;display:flex;align-items:center;justify-content:center;background-image:url(menu_soul.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
-    <div id="menu-btn-deck" class="ov-btn" style="height:70px;display:flex;align-items:center;justify-content:center;background-image:url(menu_deck.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
-    <div id="menu-btn-achievements" class="ov-btn" style="height:70px;display:flex;align-items:center;justify-content:center;background-image:url(menu_jiltuseki.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
-    <div id="menu-btn-gamedata" class="ov-btn" style="height:70px;display:flex;align-items:center;justify-content:center;background-image:url(menu_data.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
+    <div id="menu-btn-soul" class="ov-btn menu-img-btn" data-bg="menu_soul.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">💠 ソウル</span>
+    </div>
+    <div id="menu-btn-deck" class="ov-btn menu-img-btn" data-bg="menu_deck.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">🃏 デッキ</span>
+    </div>
+    <div id="menu-btn-shop" class="ov-btn menu-img-btn" data-bg="menu_shop.png" style="position:relative;height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback"><span style="font-size:20px;">🛒</span><span>ショップ</span></span>
+      <span id="menu-shop-new-badge" style="display:none;position:absolute;top:6px;right:8px;background:#e74c3c;color:#fff;font-size:9px;font-weight:bold;padding:2px 6px;border-radius:10px;letter-spacing:1px;box-shadow:0 0 6px rgba(231,76,60,.8);z-index:2;">NEW</span>
+    </div>
+    <div id="menu-btn-gamedata" class="ov-btn menu-img-btn" data-bg="menu_data.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">📊 ゲームデータ</span>
+    </div>
+    <div id="menu-btn-achievements" class="ov-btn menu-img-btn" data-bg="menu_jiltuseki.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">🏆 実績</span>
+    </div>
+    <div id="menu-btn-rules" class="ov-btn menu-img-btn" data-bg="menu_rulu.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback"><span style="font-size:20px;">📜</span><span>ルール説明</span></span>
+    </div>
     <div id="menu-btn-mute" class="ov-btn" style="height:70px;font-size:14px;display:flex;align-items:center;justify-content:center;background-image:url(menu_oto.png);background-size:cover;background-position:center;color:#fff;font-weight:bold;text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.7);">🔊 音量ON</div>
-    <div id="menu-btn-savedelete" class="ov-btn" style="height:70px;display:flex;align-items:center;justify-content:center;background-image:url(menu_kesu.png);background-size:cover;background-position:center;text-indent:-9999px;overflow:hidden;"></div>
+    <div id="menu-btn-savedelete" class="ov-btn menu-img-btn" data-bg="menu_kesu.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">🗑️ データ削除</span>
+    </div>
+    <div id="menu-btn-theme" class="ov-btn menu-img-btn" data-bg="menu_song.png" style="height:70px;overflow:hidden;">
+      <span class="menu-btn-fallback">🎵 メインテーマ曲「迷宮の衝動」</span>
+      <span id="menu-theme-playicon" style="position:absolute;top:50%;left:14px;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.6);">▶</span>
+    </div>
   </div>
+</div>
+
+<!-- ショップ画面（#appの外側に配置） -->
+<div class="overlay" id="ov-shop" style="gap:8px;padding:14px 12px;position:fixed;z-index:2000;background-image:url(munyu_haikei.png);background-size:cover;background-position:center;">
+  <div class="ov-title" style="font-size:16px;margin-top:0;">🛒 ショップ</div>
+  <div style="width:100%;background:rgba(0,0,0,.5);border:1px solid rgba(201,168,76,.4);border-radius:10px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-size:11px;color:#c9a84c;">所持ポイント</span>
+    <span id="shop-points-val" style="font-size:15px;color:#fff;font-weight:bold;">0 P</span>
+  </div>
+  <div style="font-size:10px;color:#999;line-height:1.5;padding:2px 4px;">
+    ステージ攻略などで手に入るポイントを使って、ソウル・ソウル上限・デッキ編集用カード・カード入れ替え上限・購入エリアなどを購入できます。特定のエリアを初クリアすると、追加の品が並ぶことがあります。
+  </div>
+  <div id="shop-content" style="width:100%;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:6px;"></div>
+  <div class="ov-btn" id="btn-shop-close" style="margin-top:4px;">閉じる</div>
 </div>
 
 <!-- ソウル設定画面（#appの外側に配置） -->
@@ -880,9 +922,34 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
 <!-- デッキ編集画面（未実装・プレースホルダー／#appの外側に配置） -->
 <div class="overlay" id="ov-deck-edit" style="gap:8px;padding:14px 12px;position:fixed;z-index:2000;background-image:url(munyu_haikei.png);background-size:cover;background-position:center;">
   <div class="ov-title" style="font-size:16px;margin-top:0;">🃏 デッキ編集</div>
-  <div style="font-family:sans-serif;font-size:12px;color:#999;text-align:center;padding:24px 8px;line-height:1.6;">
-    近日実装予定です。<br>初期デッキのカードを入れ替えられるようになります。
+
+  <!-- チャージ選択パネル -->
+  <div id="deckedit-charge-panel" style="width:100%;display:flex;flex-direction:column;gap:8px;">
+    <div style="font-size:10px;color:#999;text-align:center;">編集するチャージを選んでください</div>
+    <div id="deckedit-charge-list" style="width:100%;display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:340px;"></div>
   </div>
+
+  <!-- デッキ編集パネル（チャージ選択後に表示） -->
+  <div id="deckedit-edit-panel" style="display:none;width:100%;flex-direction:column;gap:8px;overflow:hidden;flex:1;">
+    <div id="deckedit-back" style="font-size:10px;color:#c9a84c;cursor:pointer;touch-action:manipulation;">← チャージ選択に戻る</div>
+    <div id="deckedit-header" style="width:100%;background:rgba(0,0,0,.6);border:1px solid rgba(201,168,76,.4);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;font-family:sans-serif;"></div>
+    <div style="width:100%;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;">
+      <div>
+        <div style="font-size:10px;color:#c9a84c;margin-bottom:4px;">📖 現在のデッキ（タップで詳細表示→決定で外す）</div>
+        <div id="deckedit-current-list" style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#c9a84c;margin-bottom:4px;">🗂️ サイドデッキ（外した初期デッキカード・タップで詳細表示→決定で現在のデッキへ）</div>
+        <div id="deckedit-side-list" style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;"></div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:#c9a84c;margin-bottom:4px;">🎒 入れ替え候補（購入したカード・タップで詳細表示→決定で現在のデッキへ）</div>
+        <div id="deckedit-pool-list" style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;"></div>
+      </div>
+    </div>
+    <div id="deckedit-confirm" class="ov-btn" style="margin-top:2px;">確定して保存</div>
+  </div>
+
   <div class="ov-btn" id="btn-deck-edit-close" style="margin-top:4px;">閉じる</div>
 </div>
 
@@ -1207,6 +1274,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);fon
   <div class="overlay" id="ov-deck">
     <div class="ov-title" style="font-size:16px;">📖 DECK (<span id="deck-total">0</span>枚)</div>
     <div id="deck-list"></div>
+    <div id="deck-charge-area"></div>
+    <div id="deck-soul-area"></div>
     <div id="deck-stat-area"></div>
     <div class="ov-btn" id="btn-close-deck">閉じる</div>
   </div>
@@ -1476,10 +1545,17 @@ const CHARGE_DECKS = {
   jikoSaisei: ['shinsei','shinsei','guard','guard','heal','heal','heal','composure','composure','composure','sanctuary','healReserve'],
   teppeki:    ['strike','strike','strike','guard','guard','guard','guard','heal','heal','accumulate','accumulate','shieldBash'],
   dokushi:    ['poisonNeedle','poisonNeedle','poison','poison','guard','guard','guard','heal','heal','expPoison','ragePoison','ragePoison'],
-  inori:      ['strike','strike','strike','guard','guard','guard','heal','heal','heal','furyDance','furyDance','furyDance','bindingChain'],
+  inori:      ['strike','strike','strike','guard','guard','guard','heal','heal','furyDance','furyDance','furyDance','bindingChain'],
   haki:       ['strike','strike','soulEater','soulEater','heal','heal','slow','slow','slow','bloodPact','kyougeki','kyougeki'],
 };
 
+// チャージ別の「実際に使用するデッキ」を取得（編集済みならそちらを、無ければ初期デッキを返す）
+function getEffectiveDeck(chargeId){
+  SAVE.customDecks=SAVE.customDecks||{};
+  const custom=SAVE.customDecks[chargeId];
+  if(Array.isArray(custom) && custom.length>0) return [...custom];
+  return [...(CHARGE_DECKS[chargeId]||STARTER)];
+}
 const BG_IMGS=['bg1.png','bg2.png','bg3.png','bg4.png'];
 function getBgImg(stage){
   if(G.areaId===0){
@@ -1621,7 +1697,7 @@ const SWAMP_ENEMIES=[
   {name:'腐敗妖精',      icon:'🧚',hp:85,  atk:12, shield:8,  rank:1, pattern:['poisonatk','poisonatk','def','big'],   boss:false, img:'enemy_tuika26.png'},
   {name:'呪われた樹精',  icon:'🌲',hp:100, atk:14, shield:10, rank:2, pattern:['poisonatk','atk','big','def'],         boss:false, img:'enemy_tuika24.png'},
   {name:'ポイズングール',icon:'🧟',hp:120, atk:16, shield:12, rank:2, pattern:['poisonatk','big','def','poisonatk'],   boss:false, img:'enemy_tuika2.png'},
-  {name:'ダークフェアリー',icon:'🧚',hp:220,atk:20, shield:18, rank:3, pattern:['poisonatk','big','def','poisonatk','bigheal'], boss:true, img:'enemy_tuika20.png'},
+  {name:'ダークフェアリー',icon:'🧚',hp:220,atk:20, shield:18, rank:3, pattern:['poisonatk','moudokuatk','def','poisonatk','bigheal'], boss:true, img:'enemy_tuika20.png'},
 ];
 // 鉄壁の砦 敵データ（areaId:5）※1〜4は既存モンスター（名前に「（防御型）」を付与）、5〜7は追加モンスター(enemy_tuika)を使用
 const IRON_ENEMIES=[
@@ -1766,7 +1842,7 @@ function getRewards(stage){
 // 将来的にデッキ内容・最高到達ステージ等を追加する場合もこのSAVE_KEYの1エントリにまとめて追記していく想定。
 const SAVE_KEY='dw_save_v1';
 function _defaultSaveData(){
-  return { clearedAreas:[false,false,false], bestStage:[0,0,0], muted:false, noContinueCleared:[], chargeCleared:{}, soulsOwned:{}, soulCapacity:{}, soulEquipped:[] };
+  return { clearedAreas:[false,false,false], bestStage:[0,0,0], muted:false, noContinueCleared:[], chargeCleared:{}, soulsOwned:{}, soulCapacity:{}, soulEquipped:[], shopPoints:0, shopNewBadge:false, customDecks:{}, deckSwapLimit:0, deckPointLimit:0, unlockedCards:{} };
 }
 function loadSaveData(){
   try{
@@ -1782,6 +1858,10 @@ function loadSaveData(){
     if(!d.soulsOwned||typeof d.soulsOwned!=='object') d.soulsOwned={};
     if(!d.soulCapacity||typeof d.soulCapacity!=='object') d.soulCapacity={};
     if(!Array.isArray(d.soulEquipped)) d.soulEquipped=[];
+    if(!d.customDecks||typeof d.customDecks!=='object') d.customDecks={};
+    if(typeof d.deckSwapLimit!=='number') d.deckSwapLimit=0;
+    if(typeof d.deckPointLimit!=='number') d.deckPointLimit=0;
+    if(!d.unlockedCards||typeof d.unlockedCards!=='object') d.unlockedCards={};
     return d;
   }catch(e){
     console.warn('[DW] セーブデータの読み込みに失敗しました。初期状態で続行します。',e);
@@ -1803,6 +1883,13 @@ function markAreaCleared(areaId){
   while(SAVE.clearedAreas.length<=areaId) SAVE.clearedAreas.push(false);
   if(!SAVE.clearedAreas[areaId]){
     SAVE.clearedAreas[areaId]=true;
+    // このエリアクリアで追加販売されるショップ品があればNEWバッジを立てる
+    try{
+      const areaName=AREA_DATA[areaId]&&AREA_DATA[areaId].name;
+      if(areaName && typeof SHOP_ITEMS!=='undefined' && SHOP_ITEMS.some(it=>it.unlockArea===areaName)){
+        SAVE.shopNewBadge=true;
+      }
+    }catch(_e){}
     writeSaveData();
     return true;
   }
@@ -2283,6 +2370,7 @@ function checkEnemyDeath(){
       if(effectQueue.length>0||effectRunning){setTimeout(_wv,100);return;}
       const sp=document.getElementById('enemy-sprite');
       if(sp){spawnDeathEffect(sp);sp.style.transition='opacity 0.6s ease-out';sp.style.opacity='0';}
+      sfxEnemyDefeated();
       setTimeout(()=>{G._victoryPending=false;victory();},2000);
     };
     setTimeout(_wv,100);
@@ -3361,7 +3449,7 @@ function enemyTurn(){
       const pd=G.enemyPoison;
       e.curHp=Math.max(0,e.curHp-pd);
       G.totalDmgDealt=(G.totalDmgDealt||0)+pd;
-      G.enemyPoison--;
+      G.enemyPoison=Math.floor(G.enemyPoison/2);
       addLog('☠️ 毒: 敵'+pd+'ダメ（残カウント'+G.enemyPoison+'）','player');
       sfxPoison();
       spawnDmgNum('-'+pd,'enemy-dmg'); shakeEnemyArea();
@@ -3386,7 +3474,7 @@ function enemyTurn(){
     const ea=Math.max(1,e.atk-G.enemyAtkDebuff);
     // 行動テキストボックス表示
     const actionLabels={
-      atk:'⚔️ 攻撃 '+ea,big:'💥 大攻撃 '+(ea*2),poisonatk:'☠️ 毒攻撃 '+ea,drain:'🩸 吸収攻撃 '+ea,
+      atk:'⚔️ 攻撃 '+ea,big:'💥 大攻撃 '+(ea*2),poisonatk:'☠️ 毒攻撃 '+ea,moudokuatk:'☠️💥 猛毒攻撃 '+(ea*2),drain:'🩸 吸収攻撃 '+ea,
       def:'🛡️ 防御',bigdef:'🛡️ 大防御',superbigdef:'🛡️ 超防御',
       curse:'☠️ 呪い '+ea,bigcurse:'☠️ 大呪い '+(ea*2),heal:'💚 回復',bigheal:'💚 大回復',
       summon:'🌑 召喚',quake:'🌍 地響き '+ea,seal:'🔒 封印 '+ea,poisonfang:'☠️ 猛毒牙 '+ea,
@@ -3411,10 +3499,29 @@ function enemyTurn(){
         enemySpriteAttack();
         const _dealtDmg=dealToPlayer(ea,e.name+'の毒攻撃☠️')||0;
         if(G.playerHp>0){
-          const _poisonAdd=Math.max(0, Math.floor(_dealtDmg/2)-(G.soulPoisonReduce||0));
+          const _poisonAdd=Math.max(0, _dealtDmg-(G.soulPoisonReduce||0));
           if(_poisonAdd>0){
             G.playerPoison=(G.playerPoison||0)+_poisonAdd;
             addLog('☠️ 毒を受けた！+'+_poisonAdd+'（'+G.playerPoison+'T）','enemy');
+          } else {
+            addLog('☠️ 毒は付与されなかった','enemy');
+          }
+          updateUI();
+        }
+      }
+    }
+    else if(act==='moudokuatk'){
+      if(G.invincibleTurns>0){
+        addLog('🌟 無敵: '+e.name+'の猛毒攻撃 無効！','sys');
+      } else {
+        enemySpriteAttack();
+        const _dealtDmg=dealToPlayer(Math.floor(ea*2),e.name+'の猛毒攻撃☠️💥')||0;
+        if(G.playerHp>0){
+          // 実際に与えたダメージ分そのまま毒カウントを付与（シールド等での減少後の実ダメージ基準）
+          const _poisonAdd=Math.max(0, _dealtDmg-(G.soulPoisonReduce||0));
+          if(_poisonAdd>0){
+            G.playerPoison=(G.playerPoison||0)+_poisonAdd;
+            addLog('☠️ 猛毒を受けた！+'+_poisonAdd+'（'+G.playerPoison+'T）','enemy');
           } else {
             addLog('☠️ 毒は付与されなかった','enemy');
           }
@@ -3775,7 +3882,7 @@ function enemyTurn(){
     if(G.playerPoison>0){
       const ppd=G.playerPoison; // カウント分ダメージ
       G.playerHp=Math.max(0,G.playerHp-ppd);
-      G.playerPoison--; // カウント1減少
+      G.playerPoison=Math.floor(G.playerPoison/2); // カウントを半減（切り下げ）
       addLog('☠️ 毒ダメ: HP-'+ppd+' (残カウント'+G.playerPoison+')','enemy');
       sfxPoison();
       spawnDmgNum('-'+ppd,'player-dmg'); shakePlayerArea(); flashScreen('flash-red');
@@ -3974,6 +4081,7 @@ function updateIntent(){
     atk:      '⚔️ 攻撃 '+ea,
     big:      '💥 大攻撃 '+(ea*2),
     poisonatk:'☠️ 毒攻撃 '+ea,
+    moudokuatk:'☠️💥 猛毒攻撃 '+(ea*2),
     drain:    '🩸 吸収 '+ea,
     def:      '🛡️ 防御',
     bigdef:   '🛡️🛡️ 大防御',
@@ -4003,7 +4111,8 @@ function updateIntent(){
   const detail={
     atk:      '⚔️ 攻撃\nダメージ: '+ea,
     big:      '💥 大攻撃\nダメージ: '+(ea*2)+'（通常の2倍）',
-    poisonatk:'☠️ 毒攻撃\nダメージ: '+ea+'\n毒カウント+（実際に与えたダメージの半分・切り捨て。毎ターン終了時に毒カウント分ダメージ）',
+    poisonatk:'☠️ 毒攻撃\nダメージ: '+ea+'\n毒カウント+（実際に与えたダメージと同数。毎ターン毒カウント分ダメージを与え、カウントは半減・切り捨て）',
+    moudokuatk:'☠️💥 猛毒攻撃\nダメージ: '+(ea*2)+'（通常の2倍）\n毒カウント+（実際に与えたダメージと同数。毎ターン毒カウント分ダメージを与え、カウントは半減・切り捨て）',
     drain:    '🩸 吸収攻撃\nダメージ: '+ea+'\n自己回復: ダメージ量の50%',
     def:      '🛡️ 防御\nシールド+12',
     bigdef:   '🛡️🛡️ 大防御\nシールド+24',
@@ -4035,7 +4144,7 @@ function updateIntent(){
   if(intentEl){
     // 行動種別で色分け
     const _yellow=['atk','poisonatk','curse','drain','summon'];
-    const _red=['big','bigcurse'];
+    const _red=['big','bigcurse','moudokuatk'];
     const _blue=['def','bigdef','superbigdef'];
     const _green=['heal','bigheal'];
     let _ic='#b48aff'; // その他:紫
@@ -4400,8 +4509,8 @@ function closeReward(){
   // ===== 始まりの洞窟 専用イベント =====
   if(G.areaId===0){
     if(G.stage===1||G.stage===3){
-      // STAGE1後・STAGE3後：強化＋鍛冶屋（両方）
-      showCaveStatUpThenSmith();
+      // STAGE1後・STAGE3後：鍛冶屋のみ（ステータス強化は廃止）
+      showSmithEvent();
     } else if(G.stage===2||G.stage===4){
       // STAGE2後・STAGE4後：強化のみ
       showCaveStatUpEvent();
@@ -4462,8 +4571,8 @@ function closeReward(){
   // ===== 毒の沼地 専用イベント（洞窟と同じ頻度・強化プールを7ステージに引き延ばし） =====
   if(G.areaId===4){
     if(G.stage===1||G.stage===3||G.stage===5){
-      // Stage1・3・5後：強化＋鍛冶屋
-      showCaveStatUpThenSmith();
+      // Stage1・3・5後：鍛冶屋のみ（ステータス強化は廃止）
+      showSmithEvent();
     } else if(G.stage===2||G.stage===4||G.stage===6){
       // Stage2・4・6後：強化のみ
       showCaveStatUpEvent();
@@ -4476,8 +4585,8 @@ function closeReward(){
   // ===== 鉄壁の砦 専用イベント（洞窟と同じ頻度・強化プールを7ステージに引き延ばし） =====
   if(G.areaId===5){
     if(G.stage===1||G.stage===3||G.stage===5){
-      // Stage1・3・5後：強化＋鍛冶屋
-      showCaveStatUpThenSmith();
+      // Stage1・3・5後：鍛冶屋のみ（ステータス強化は廃止）
+      showSmithEvent();
     } else if(G.stage===2||G.stage===4||G.stage===6){
       // Stage2・4・6後：強化のみ
       showCaveStatUpEvent();
@@ -4629,7 +4738,7 @@ function showSmithEvent(){
     list.appendChild(empty);
     const skipBtn=document.createElement('div');
     skipBtn.className='ov-btn';
-    if(G.areaId===0){
+    if(G.areaId===0||G.areaId===4||G.areaId===5){
       skipBtn.textContent='スキップして次へ';
       bindTouch(skipBtn,()=>{restoreSmithBg();hideOv('ov-statup');afterEventNext();});
     } else {
@@ -4668,10 +4777,10 @@ function showSmithEvent(){
     list.appendChild(d);
   });
 
-  // 下部ボタン：洞窟は「スキップして次へ」、遺跡は「イベント選択に戻る」
+  // 下部ボタン：洞窟・毒の沼地・鉄壁の砦は「スキップして次へ」、遺跡は「イベント選択に戻る」
   const bottomBtn=document.createElement('div');
   bottomBtn.className='ov-btn';
-  if(G.areaId===0){
+  if(G.areaId===0||G.areaId===4||G.areaId===5){
     bottomBtn.textContent='スキップして次へ';
     bindTouch(bottomBtn,()=>{restoreSmithBg();hideOv('ov-statup');afterEventNext();});
   } else {
@@ -4939,7 +5048,7 @@ const AREA_DATA = [
     icon: '🏚️',
     stages: 15,
     difficulty: '★★★',
-    desc: 'スタンダード難易度のダンジョン',
+    desc: '記憶を喰らう遺跡。手強い敵が待ち受ける難関ダンジョン',
     areaEffect: null,
     soulReward: 'gogeki',
     popupBg: 'pop_6.png',
@@ -5142,7 +5251,7 @@ function showChargeSelect(){
       showSimpleConfirm('「<span style="color:'+ct.color+';font-size:18px;letter-spacing:2px;">'+ct.name+'</span>」<br>を選びますか？', '', ()=>{
         G.chargeType=ct.id;
         G.chargeCount=0;
-        G.deck=[...(CHARGE_DECKS[ct.id]||STARTER)];
+        G.deck=getEffectiveDeck(ct.id);
         hideOv('ov-charge-select');
         hideOv('ov-area-select');
         hideOv('ov-main-menu'); // メニュー画面が戦闘画面の手前に残らないよう非表示にする
@@ -6180,7 +6289,7 @@ function showStatusDetail(target){
   if(target==='enemy'){
     lines.push('【敵の状態】');
     if(G.enemyShield>0) lines.push('🛡️ シールド '+G.enemyShield+'\n次のダメージをシールド値分吸収する');
-    if(G.enemyPoison>0) lines.push('☠️ 毒 カウント '+G.enemyPoison+'\nターン終了時に毒カウント分ダメージ、カウント-1');
+    if(G.enemyPoison>0) lines.push('☠️ 毒 カウント '+G.enemyPoison+'\nターン終了時に毒カウント分ダメージ、カウントは半減（切り捨て）');
     if(G.enemyAtkDebuff>0) lines.push('⬇️ 攻撃力デバフ -'+G.enemyAtkDebuff+' (残'+G.weakenTurns+'T)\n敵の攻撃力が減少している');
     if(G.weakenHalf) lines.push('💀 弱体化\nこのターン、敵の攻撃が半減');
     if(G.enemyFrozen) lines.push('🧊 凍結\nこのターン行動不能');
@@ -6189,7 +6298,7 @@ function showStatusDetail(target){
   } else {
     lines.push('【あなたの状態】');
     if(G.shield>0) lines.push('🛡️ シールド '+G.shield+'\nダメージを吸収。ターン開始時30%減少');
-    if(G.playerPoison>0) lines.push('☠️ 毒 '+G.playerPoison+'T\nターン開始時に毒カウント分ダメージ');
+    if(G.playerPoison>0) lines.push('☠️ 毒 '+G.playerPoison+'T\nターン開始時に毒カウント分ダメージ、カウントは半減（切り捨て）');
     if(G.playerBurn>0) lines.push('🔥 炎上 '+G.playerBurn+'層\nターン開始時に固定2ダメージ。層数は毎ターン1減衰（最大10層）');
     if(G.atkBuff>(G.permAtkBonus||0)) lines.push('⚔️ 攻撃力バフ +'+G.atkBuff+'\nこのターン中の攻撃力ボーナス');
     if(G.regenTurns>0) lines.push('💚 聖域再生 '+G.regenTurns+'T\nターン終了時HP+'+G.regenVal+'回復');
@@ -7832,6 +7941,33 @@ function addCardToDeck(id){
 function bind(id,fn){const el=document.getElementById(id);if(!el)return;if(el._dwBound){el._dwBoundFn=fn;return;}el._dwBound=true;el._dwBoundFn=fn;let _t=0;const guarded=(e)=>{if(e&&e.stopPropagation)e.stopPropagation();const now=Date.now();if(now-_t<300)return;_t=now;el._dwBoundFn();};el.addEventListener('click',guarded);el.addEventListener('touchend',e=>{e.preventDefault();guarded(e);});}
 // タップ/クリックの二重発火を防ぐ共通ラッパー（addEventListenerで click+touchend を両方登録する箇所向け）
 function bindSafe(el,fn){if(!el)return;let _handled=false;const guarded=(e)=>{if(e&&e.type==='touchend')e.preventDefault();if(_handled)return;_handled=true;fn(e);};el.addEventListener('click',guarded);el.addEventListener('touchend',guarded);return ()=>{_handled=false;};}
+// スクロール可能なリスト内の項目用：指が一定以上動いた（スワイプ/スクロール）場合はタップとして扱わない
+function bindTapSwipe(el,fn){
+  if(!el) return;
+  let moved=false,startX=0,startY=0,_handled=false;
+  const TH=8;
+  el.addEventListener('touchstart',(e)=>{
+    moved=false;
+    if(e.touches&&e.touches[0]){startX=e.touches[0].clientX;startY=e.touches[0].clientY;}
+  },{passive:true});
+  el.addEventListener('touchmove',(e)=>{
+    if(!e.touches||!e.touches[0])return;
+    const dx=Math.abs(e.touches[0].clientX-startX),dy=Math.abs(e.touches[0].clientY-startY);
+    if(dx>TH||dy>TH) moved=true;
+  },{passive:true});
+  el.addEventListener('touchend',(e)=>{
+    if(moved){moved=false;return;}
+    e.preventDefault();
+    if(_handled)return;_handled=true;
+    fn(e);
+    setTimeout(()=>{_handled=false;},50);
+  });
+  el.addEventListener('click',(e)=>{
+    if(_handled)return;_handled=true;
+    fn(e);
+    setTimeout(()=>{_handled=false;},50);
+  });
+}
 // スクロール可能な一覧内のボタン用：指がしきい値以上動いたら（スワイプ扱いで）タップを発火させない。
 // id指定版。要素に対して1回だけ実際にバインドする（呼び直しても二重登録しない）。
 function bindTapSafe(id,fn){
@@ -7898,11 +8034,12 @@ function bindTouch(el, fn){
 
 // タップで詳細表示＋決定/キャンセル（報酬・イベント用）
 // ステージ中のカード選択と同じ見た目・操作感で統一
-function showCardDetailWithConfirm(c, onConfirm){
-  const existing=document.getElementById('card-use-popup');
+function showCardDetailWithConfirm(c, onConfirm, appendToBody){
+  const popupId=appendToBody?'card-use-popup-outer':'card-use-popup';
+  const existing=document.getElementById(popupId);
   if(existing&&existing.parentNode) existing.parentNode.removeChild(existing);
   const popup=document.createElement('div');
-  popup.id='card-use-popup';
+  popup.id=popupId;
   popup.style.cssText='position:fixed;inset:0;z-index:9600;background:rgba(0,0,0,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;touch-action:manipulation;gap:0;';
   // カード拡大表示（ステージ中のcard-detail-popupと同様のスタイル）
   const cardWrap=document.createElement('div');
@@ -7948,10 +8085,10 @@ function showCardDetailWithConfirm(c, onConfirm){
   btnWrap.appendChild(okBtn);
   btnWrap.appendChild(cancelBtn);
   popup.appendChild(btnWrap);
-  appendToApp(popup);
+  if(appendToBody) document.body.appendChild(popup); else appendToApp(popup);
 }
 
-function bindCardTouch(el, c, tapFn){
+function bindCardTouch(el, c, tapFn, appendToBody){
   if(!el) return;
   let moved=false, startY=0, startX=0;
   const THRESHOLD=5;
@@ -7963,9 +8100,9 @@ function bindCardTouch(el, c, tapFn){
   el.addEventListener('touchend',(ev)=>{
     if(moved)return;
     ev.preventDefault();
-    showCardDetailWithConfirm(c,()=>tapFn(ev));
+    showCardDetailWithConfirm(c,()=>tapFn(ev),appendToBody);
   });
-  el.addEventListener('click',(ev)=>{if(!moved)showCardDetailWithConfirm(c,()=>tapFn(ev));});
+  el.addEventListener('click',(ev)=>{if(!moved)showCardDetailWithConfirm(c,()=>tapFn(ev),appendToBody);});
 }
 // ===== Web Audio 効果音 =====
 let _audioCtx=null;
@@ -8113,12 +8250,14 @@ const SE_FILES={
   heal:    'se_heal.mp3',
   confirm: 'se_confirm.mp3',
   cancel:  'se_cancel.mp3',
+  select:  'se_select.mp3',
+  back:    'se_back.mp3',
   endTurn: 'se_endturn.mp3',
   chargeComplete: 'se_charge_complete.mp3',
   chargeActivate: 'se_charge_activate.mp3',
   pickCard:'se_pick_card.mp3',
   poison:  'se_poison.mp3',
-  enemyDefeated: 'se_enemy_defeated.mp3',
+  enemyDefeated: 'se_monster_kill.mp3',
 };
 const _seCache={}; // ファイル存在キャッシュ（null=未確認, true=あり, false=なし）
 function playSE(key, fallback){
@@ -8147,6 +8286,9 @@ function sfxDefeat(){playSE('defeat',()=>[300,250,200,150].forEach((f,i)=>playBe
 function sfxHeal(){playSE('heal',()=>{playBeep(600,'sine',0.08,0.80);playBeep(800,'sine',0.08,0.75,0.07);});}
 function sfxConfirm(){playSE('confirm',()=>{playBeep(500,'sine',0.07,0.80);playBeep(700,'sine',0.07,0.75,0.07);});}
 function sfxCancel(){playSE('cancel',()=>{playBeep(400,'sine',0.06,0.75);playBeep(280,'sine',0.06,0.70,0.06);});}
+// 選択（一覧タップ・トグル等）／もどる（画面を閉じて前の画面へ戻る）
+function sfxSelect(){playSE('select',()=>{playBeep(620,'sine',0.05,0.70);});}
+function sfxBack(){playSE('back',()=>{playBeep(340,'sine',0.06,0.65);});}
 function sfxEndTurn(){playSE('endTurn',()=>{playBeep(320,'square',0.07,0.80);playBeep(260,'square',0.05,0.70,0.08);});}
 function sfxChargeComplete(){playSE('chargeComplete',()=>[440,550,660,770].forEach((f,i)=>playBeep(f,'sine',0.12,0.85,i*0.07)));}
 function sfxChargeActivate(){playSE('chargeActivate',()=>[330,440,550].forEach((f,i)=>playBeep(f,'sine',0.14,0.90,i*0.03)));}
@@ -8278,7 +8420,7 @@ function showAdThenContinue(onComplete){
 
 // コンテニューボタンは動的生成内でバインド済み（ver150）
 bind('btn-close-deck',()=>{sfxCancel();hideOv('ov-deck');});
-bind('btn-close-rules',()=>{sfxCancel();hideOv('ov-rules');});
+bind('btn-close-rules',()=>{sfxBack();hideOv('ov-rules');});
 // ov-rulesはbody直下のため別途バインド
 setTimeout(()=>{
   const closeRulesBtn=document.getElementById('btn-close-rules');
@@ -8892,6 +9034,25 @@ function _mvRenderTab(areaIdx){
 }
 
 bind('btn-admin-monsterview',()=>{ openMonsterViewer(); });
+bind('btn-admin-deckgrant',()=>{
+  SAVE.deckSwapLimit=(SAVE.deckSwapLimit||0)+1;
+  SAVE.deckPointLimit=(SAVE.deckPointLimit||0)+3;
+  const pool=['strike','guard','heal','bash','punch','karuren'];
+  const gid=pool[Math.floor(Math.random()*pool.length)];
+  SAVE.unlockedCards=SAVE.unlockedCards||{};
+  SAVE.unlockedCards[gid]=(SAVE.unlockedCards[gid]||0)+1;
+  writeSaveData();
+  const c=DB[gid];
+  _deckEditShowMsg('🔧 [管理者] 入れ替え枠'+SAVE.deckSwapLimit+' ／ デッキポイント上限'+SAVE.deckPointLimit+' ／「'+(c?c.name:gid)+'」を1枚入手しました',true);
+});
+bind('btn-admin-deckreset',()=>{
+  SAVE.deckSwapLimit=0;
+  SAVE.deckPointLimit=0;
+  SAVE.unlockedCards={};
+  SAVE.customDecks={};
+  writeSaveData();
+  _deckEditShowMsg('🔧 [管理者] デッキ編集のテストデータをリセットしました（入れ替え枠・デッキポイント上限・所持カード・保存済みデッキを全て初期化）',true);
+});
 
 // 管理者パスワード入力のイベントをJS側でバインド（インライン属性より確実）
 (function(){
@@ -8931,6 +9092,8 @@ bind('btn-deck-view',()=>{
   if(_isGameLocked())return;
   const dl=document.getElementById('deck-list');dl.innerHTML='';
   const sa=document.getElementById('deck-stat-area');if(sa)sa.innerHTML='';
+  const ca=document.getElementById('deck-charge-area');if(ca)ca.innerHTML='';
+  const soa=document.getElementById('deck-soul-area');if(soa)soa.innerHTML='';
 
   // カード一覧（上）
   const cnt={};G.deck.forEach(id=>cnt[id]=(cnt[id]||0)+1);
@@ -8957,9 +9120,47 @@ bind('btn-deck-view',()=>{
   });
   document.getElementById('deck-total').textContent=G.deck.length;
 
+  // 選択中チャージ（専用枠）
+  if(ca && G.chargeType){
+    const ct=CHARGE_TYPES[G.chargeType];
+    if(ct){
+      ca.style.cssText='width:100%;background:rgba(0,0,0,.6);border:1px solid '+ct.color+'55;border-radius:10px;padding:8px 10px;margin-top:4px;';
+      ca.innerHTML='<div style="font-family:\'Cinzel\',serif;font-size:10px;color:#c9a84c;margin-bottom:6px;letter-spacing:1px;">⚡ チャージ</div>'+
+        '<div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 9px;">'+
+          '<span style="font-size:13px;">'+ct.icon+'</span>'+
+          '<div>'+
+            '<div style="font-size:11px;color:'+ct.color+';font-weight:bold;">'+ct.name+'</div>'+
+            '<div style="font-size:9px;color:#bbb;line-height:1.4;">'+ct.desc+'</div>'+
+          '</div>'+
+        '</div>';
+    }
+  }
+
+  // 装着中ソウル（専用枠）
+  if(soa){
+    const equipped=getEquippedSouls();
+    if(equipped.length>0){
+      soa.style.cssText='width:100%;background:rgba(0,0,0,.6);border:1px solid rgba(142,68,173,.4);border-radius:10px;padding:8px 10px;margin-top:4px;';
+      soa.innerHTML='<div style="font-family:\'Cinzel\',serif;font-size:10px;color:#c9a84c;margin-bottom:6px;letter-spacing:1px;">💠 装着中ソウル</div>';
+      const wrap=document.createElement('div');
+      wrap.style.cssText='display:flex;flex-direction:column;gap:4px;';
+      equipped.forEach(sid=>{
+        const s=SOULS[sid];if(!s)return;
+        const row=document.createElement('div');
+        row.style.cssText='display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 9px;';
+        row.innerHTML='<span style="font-size:13px;">'+s.icon+'</span>'+
+          '<div>'+
+            '<div style="font-size:11px;color:#c9a0e0;font-weight:bold;">'+s.name+'</div>'+
+            '<div style="font-size:9px;color:#bbb;line-height:1.4;">'+s.desc+'</div>'+
+          '</div>';
+        wrap.appendChild(row);
+      });
+      soa.appendChild(wrap);
+    }
+  }
+
   // ステータス強化情報（下・横長枠）
   const statLines=[];
-  if(G.chargeType){const ct=CHARGE_TYPES[G.chargeType];if(ct)statLines.push({icon:ct.icon,text:ct.name+' チャージ',color:ct.color});}
   if(G.permAtkBonus>0) statLines.push({icon:'⚔️',text:'常時攻撃力 +'+G.permAtkBonus,color:'#e74c3c'});
   if(G.permAtkBuff2>0) statLines.push({icon:'⚡',text:'最初の一撃 攻撃力+'+G.permAtkBuff2,color:'#f39c12'});
   if(G.turnStartShieldBonus>0) statLines.push({icon:'🛡️',text:'ターン開始時 盾+'+G.turnStartShieldBonus,color:'#5dade2'});
@@ -9039,7 +9240,7 @@ window.addEventListener('load',()=>{
 function showLogoThenTitle(){
   _gameStarting=false;
   // メニュー関連のオーバーレイが残っていれば念のため非表示にする
-  ['ov-main-menu','ov-area-select','ov-charge-select','ov-soul-setup','ov-deck-edit','ov-achievements','ov-gamedata'].forEach(id=>{
+  ['ov-main-menu','ov-area-select','ov-charge-select','ov-soul-setup','ov-deck-edit','ov-achievements','ov-gamedata','ov-shop'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.classList.remove('show');
   });
   // ログエリアをクリア
@@ -9265,6 +9466,121 @@ function _updateMuteBtnLabel(){
   if(!btn) return;
   btn.textContent=isMuted()?'🔇 音量OFF':'🔊 音量ON';
 }
+// メニューの各画像ボタンについて、背景画像が実際に読み込めるか確認し、
+// 読み込めた場合は画像のみ（テキスト非表示）、読み込めなかった場合はテキストのみ表示に切り替える
+// （音量・メインテーマ曲ボタンは常時テキスト表示の仕様に戻したため対象外）
+function _initMenuImgFallbacks(){
+  document.querySelectorAll('.menu-img-btn[data-bg]').forEach(el=>{
+    if(el._imgChecked) return; // 二重チェック防止
+    el._imgChecked=true;
+    const src=el.dataset.bg;
+    const img=new Image();
+    img.onload=()=>{
+      el.style.backgroundImage="url('"+src+"')";
+      el.classList.remove('no-img');
+    };
+    img.onerror=()=>{
+      el.classList.add('no-img');
+    };
+    img.src=src;
+  });
+}
+function _updateThemeBtnLabel(){
+  const icon=document.getElementById('menu-theme-playicon');
+  if(!icon) return;
+  const playing=(_currentBgm==='song_meikyu.mp3');
+  icon.textContent=playing?'⏸':'▶';
+  icon.style.background=playing?'rgba(200,60,120,.75)':'rgba(0,0,0,.55)';
+  icon.style.borderColor=playing?'rgba(255,180,220,.9)':'rgba(255,255,255,.8)';
+}
+
+// ==================== ショップ（プレビュー版・形だけ用意） ====================
+// 販売品リスト。unlockArea: nullなら常時販売、エリア名を指定すると該当エリアを初クリアした時点で追加販売される
+const SHOP_ITEMS=[
+  // ソウル購入
+  {cat:'soul',   icon:'💠', name:'ソウルの欠片パック', desc:'ソウル設定で使用できるソウルを1つ入手', price:100, unlockArea:null},
+  {cat:'soul',   icon:'💠', name:'深淵のソウル',       desc:'強力な効果を持つ上位ソウルを1つ入手',     price:300, unlockArea:'忘却の遺跡'},
+  // ソウル上限拡張
+  {cat:'soulcap',icon:'📦', name:'ソウル上限+1',       desc:'同時に装着できるソウルの上限を1つ拡張',   price:200, unlockArea:null},
+  // デッキ編集用カード購入（カードのレアリティに応じてデッキポイントが設定されている：common1/uncommon2/rare3/gauge3/bougai2/epic4/legendary5）
+  {cat:'card',   icon:'🃏', name:'カードパック（通常）', desc:'デッキ編集で使用できるカードを1枚解放（デッキポイント消費あり）',   price:80,  unlockArea:null},
+  {cat:'card',   icon:'🃏', name:'カードパック（上位）', desc:'レアリティの高いカードを1枚解放（デッキポイント消費が大きめ）',        price:250, unlockArea:'炎の神殿'},
+  // カード入れ替え上限拡張（初期値0）
+  {cat:'swap',   icon:'🔄', name:'入れ替え枠+1',       desc:'デッキ編集時のカード入れ替え上限を1つ拡張（初期値0）', price:150, unlockArea:null},
+  // デッキポイント上限拡張（初期値0）
+  {cat:'point',  icon:'💠', name:'デッキポイント+1',   desc:'デッキ編集で購入カードを入れる際のデッキポイント上限を1拡張（初期値0）', price:120, unlockArea:null},
+  // 購入エリア
+  {cat:'area',   icon:'🗺️', name:'未知のエリア解放',    desc:'新しいエリアへの挑戦権を解放',            price:500, unlockArea:'雷鳴の高原'},
+];
+function _shopUnlockedItems(){
+  // 常時販売品＋クリア済みエリアに紐づく追加販売品のみを対象にする
+  return SHOP_ITEMS.filter(it=>{
+    if(!it.unlockArea) return true;
+    const idx=AREA_DATA.findIndex(a=>a.name===it.unlockArea);
+    return idx>=0 && !!(SAVE.clearedAreas && SAVE.clearedAreas[idx]);
+  });
+}
+function _updateShopNewBadge(){
+  const badge=document.getElementById('menu-shop-new-badge');
+  if(!badge) return;
+  badge.style.display=(SAVE&&SAVE.shopNewBadge)?'block':'none';
+}
+function showShopScreen(){
+  renderShopContent();
+  // ショップを一度開いたらNEWバッジは消える
+  if(SAVE.shopNewBadge){ SAVE.shopNewBadge=false; writeSaveData(); }
+  _updateShopNewBadge();
+  showOv('ov-shop');
+}
+function renderShopContent(){
+  const content=document.getElementById('shop-content');
+  if(!content) return;
+  SAVE.shopPoints=SAVE.shopPoints||0;
+  const ptsEl=document.getElementById('shop-points-val');
+  if(ptsEl) ptsEl.textContent=SAVE.shopPoints+' P';
+
+  const CAT_LABEL={soul:'💠 ソウル',soulcap:'📦 ソウル上限拡張',card:'🃏 デッキ編集カード',swap:'🔄 カード入れ替え上限',point:'💠 デッキポイント上限',area:'🗺️ 購入エリア'};
+  const items=_shopUnlockedItems();
+  const byCat={};
+  items.forEach(it=>{ (byCat[it.cat]=byCat[it.cat]||[]).push(it); });
+
+  content.innerHTML='';
+  Object.keys(CAT_LABEL).forEach(cat=>{
+    const list=byCat[cat]; if(!list||list.length===0) return;
+    const sec=document.createElement('div');
+    sec.style.cssText='width:100%;';
+    const title=document.createElement('div');
+    title.style.cssText='font-family:"Cinzel",serif;font-size:11px;color:#c9a84c;margin-bottom:6px;letter-spacing:1px;';
+    title.textContent=CAT_LABEL[cat];
+    sec.appendChild(title);
+    list.forEach(it=>{
+      const row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 10px;margin-bottom:6px;';
+      row.innerHTML=
+        '<span style="font-size:20px;">'+it.icon+'</span>'+
+        '<div style="flex:1;min-width:0;">'+
+          '<div style="font-size:12px;color:#fff;font-weight:bold;">'+it.name+'</div>'+
+          '<div style="font-size:9px;color:#aaa;line-height:1.4;">'+it.desc+'</div>'+
+        '</div>'+
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">'+
+          '<div style="font-size:10px;color:#c9a84c;white-space:nowrap;">'+it.price+' P</div>'+
+          '<div class="shop-buy-btn" style="font-size:10px;color:#c9a84c;border:1px solid rgba(201,168,76,.5);border-radius:6px;padding:3px 10px;white-space:nowrap;">購入</div>'+
+        '</div>';
+      const buyBtn=row.querySelector('.shop-buy-btn');
+      bindTapSwipe(buyBtn,()=>{
+        sfxSelect();
+        // ※プレビュー版：購入機能は現在準備中
+        addLog('🛒 ショップは現在プレビュー版のため、購入機能は近日実装予定です。','sys');
+        flashScreen && flashScreen('flash-gold');
+      });
+      sec.appendChild(row);
+    });
+    content.appendChild(sec);
+  });
+  if(items.length===0){
+    content.innerHTML='<div style="font-size:11px;color:#999;text-align:center;padding:20px 0;">現在販売中の品はありません</div>';
+  }
+}
 // セーブ削除確認ポップアップの「削除する」ボタンに誤タップ防止のカウントダウンを設ける
 var _sdcCountdownTimer=null;
 function _startSaveDeleteCountdown(){
@@ -9296,16 +9612,30 @@ function _bindTitleExtraButtons(){
   if(_titleExtraButtonsBound) { _updateMuteBtnLabel(); return; } // 二重登録防止：初回のみ実際にバインドする
   _titleExtraButtonsBound=true;
   bind('menu-btn-area',()=>{ showAreaSelect(); });
-  bind('menu-btn-soul',()=>{ showSoulSetupScreen(); });
-  bind('menu-btn-deck',()=>{ showOv('ov-deck-edit'); });
-  bind('btn-deck-edit-close',()=>{ hideOv('ov-deck-edit'); });
-  bind('menu-btn-gamedata',()=>{ showGameDataScreen(); });
-  bind('menu-btn-achievements',()=>{ showAchievementsScreen(); });
-  bind('menu-btn-savedelete',()=>{ showOv('ov-save-delete-confirm'); _startSaveDeleteCountdown(); });
-  bind('sdc-cancel',()=>{ hideOv('ov-save-delete-confirm'); });
+  bind('menu-btn-soul',()=>{ sfxSelect(); showSoulSetupScreen(); });
+  bind('menu-btn-deck',()=>{ sfxSelect(); showDeckEditScreen(); });
+  bind('btn-deck-edit-close',()=>{ sfxBack(); hideOv('ov-deck-edit'); });
+  bind('deckedit-back',()=>{ sfxBack(); showDeckEditScreen(); });
+  bind('menu-btn-gamedata',()=>{ sfxSelect(); showGameDataScreen(); });
+  bind('menu-btn-shop',()=>{ sfxSelect(); showShopScreen(); });
+  bind('btn-shop-close',()=>{ sfxBack(); hideOv('ov-shop'); });
+  bind('menu-btn-rules',()=>{ sfxSelect(); showOv('ov-rules'); });
+  bind('menu-btn-achievements',()=>{ sfxSelect(); showAchievementsScreen(); });
+  bind('menu-btn-savedelete',()=>{ sfxSelect(); showOv('ov-save-delete-confirm'); _startSaveDeleteCountdown(); });
+  bind('menu-btn-theme',()=>{
+    sfxSelect();
+    if(_currentBgm==='song_meikyu.mp3'){
+      playBgm('op.mp3'); // メニューの通常BGMに戻す
+    } else {
+      playBgm('song_meikyu.mp3');
+    }
+    _updateThemeBtnLabel();
+  });
+  bind('sdc-cancel',()=>{ sfxCancel(); hideOv('ov-save-delete-confirm'); });
   bind('sdc-ok',()=>{
     const okBtn=document.getElementById('sdc-ok');
     if(okBtn && okBtn.disabled) return; // カウントダウン中は誤タップ防止のため無効
+    sfxConfirm();
     const _keepMuted=SAVE&&SAVE.muted; // 音量設定はプレイ記録と別扱いなので保持する
     try{ localStorage.removeItem(SAVE_KEY); }catch(err){ console.warn('[DW] セーブデータの削除に失敗しました。',err); }
     SAVE=_defaultSaveData();
@@ -9313,26 +9643,269 @@ function _bindTitleExtraButtons(){
     writeSaveData();
     hideOv('ov-save-delete-confirm');
   });
-  bind('menu-btn-mute',()=>{ setMuted(!isMuted()); _updateMuteBtnLabel(); });
+  bind('menu-btn-mute',()=>{ sfxSelect(); setMuted(!isMuted()); _updateMuteBtnLabel(); });
   bind('btn-menu-back',()=>{
+    sfxBack();
     hideOv('ov-main-menu');
     const ls=document.getElementById('logo-screen');
     if(ls){ls.style.display='flex';requestAnimationFrame(()=>requestAnimationFrame(()=>{ls.style.opacity='1';_registerStartListeners();}));}
     playBgm('op.mp3');
   });
   _updateMuteBtnLabel();
+  _updateShopNewBadge();
+  _updateThemeBtnLabel();
+  _initMenuImgFallbacks();
 }
 _bindTitleExtraButtons();
 // メインメニュー画面を表示（タイトルの「はじめる」タップ後、最初に表示される選択画面）
 function showMainMenu(){
   showOv('ov-main-menu');
+  _updateShopNewBadge();
+  _updateThemeBtnLabel();
 }
 
 // ===== ゲームデータ画面（モンスター図鑑・カード図鑑） =====
 let _gamedataTab='monster';
+// デッキ編集画面用の可視トースト通知（addLogは戦闘画面側のログでデッキ編集中は見えないため専用に用意）
+function _deckEditShowMsg(text, positive){
+  let el=document.getElementById('deckedit-toast');
+  if(!el){
+    el=document.createElement('div');
+    el.id='deckedit-toast';
+    el.style.cssText='position:fixed;left:50%;bottom:70px;transform:translateX(-50%);font-size:11px;padding:9px 16px;border-radius:20px;z-index:9700;pointer-events:none;max-width:82%;text-align:center;white-space:normal;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,.6);';
+    document.body.appendChild(el);
+  }
+  if(positive){
+    el.style.background='rgba(10,20,10,.95)';el.style.color='#a8f0b0';el.style.border='1px solid rgba(120,255,150,.5)';
+  } else {
+    el.style.background='rgba(20,10,10,.95)';el.style.color='#ffb3b3';el.style.border='1px solid rgba(255,120,120,.5)';
+  }
+  el.textContent=text;
+  el.style.opacity='1';
+  el.style.transition='none';
+  clearTimeout(el._hideTimer);
+  el._hideTimer=setTimeout(()=>{ el.style.transition='opacity .35s'; el.style.opacity='0'; },1800);
+}
+// ==================== デッキ編集（基本土台） ====================
+let _deckEditChargeId=null;
+let _deckEditWorkingDeck=[]; // 編集中のデッキ：[{id,origin:'preset'|'pool'}, ...]（確定するまでSAVEには反映しない）
+let _deckEditSideDeckArr=[]; // サイドデッキ：外したプリセット由来カードのidの配列
+// デッキポイント制：ショップで購入できるカードには、レアリティに応じたデッキポイントが設定されている
+const RARITY_DECK_POINTS={common:1, uncommon:2, rare:3, epic:4, legendary:5, gauge:3, bougai:2};
+function getCardDeckPoint(cardId){
+  const c=DB[cardId];
+  if(!c) return 1;
+  return RARITY_DECK_POINTS[c.rarity]!=null?RARITY_DECK_POINTS[c.rarity]:1;
+}
+// 現在の編集中デッキで、入れ替え候補（購入カード）が消費しているデッキポイント合計
+function _deckEditPointsUsed(){
+  let sum=0;
+  _deckEditWorkingDeck.forEach(o=>{ if(o.origin==='pool') sum+=getCardDeckPoint(o.id); });
+  return sum;
+}
+
+function showDeckEditScreen(){
+  _deckEditChargeId=null;
+  _deckEditWorkingDeck=[];
+  _deckEditSideDeckArr=[];
+  document.getElementById('deckedit-charge-panel').style.display='flex';
+  document.getElementById('deckedit-edit-panel').style.display='none';
+  renderDeckEditChargeList();
+  showOv('ov-deck-edit');
+}
+function renderDeckEditChargeList(){
+  const list=document.getElementById('deckedit-charge-list');
+  if(!list) return;
+  list.innerHTML='';
+  Object.values(CHARGE_TYPES).forEach(ct=>{
+    const preset=CHARGE_DECKS[ct.id]||STARTER;
+    const hasCustom=!!(SAVE.customDecks && Array.isArray(SAVE.customDecks[ct.id]) && SAVE.customDecks[ct.id].length>0);
+    const d=document.createElement('div');
+    d.style.cssText='background:rgba(0,0,0,.85);border:2px solid '+ct.color+';border-radius:10px;padding:9px 12px;cursor:pointer;touch-action:manipulation;display:flex;align-items:center;gap:10px;';
+    d.innerHTML='<span style="font-size:22px;">'+ct.icon+'</span>'
+      +'<div style="flex:1;">'
+      +'<div style="font-family:\'Cinzel\',serif;font-size:13px;color:'+ct.color+';font-weight:bold;">'+ct.name+'</div>'
+      +'<div style="font-size:9px;color:#999;margin-top:2px;">'+preset.length+'枚デッキ'+(hasCustom?'　<span style="color:#7ed6a0;">編集済み</span>':'')+'</div>'
+      +'</div>'
+      +'<span style="font-size:12px;color:#c9a84c;">＞</span>';
+    bindTapSwipe(d,()=>{ sfxSelect(); openDeckEditFor(ct.id); });
+    list.appendChild(d);
+  });
+}
+// 保存済み(またはプリセット)のフラットなid配列から、{id,origin}の作業用配列とサイドデッキ配列を復元する
+function _deckEditInitState(chargeId){
+  const preset=CHARGE_DECKS[chargeId]||STARTER;
+  const presetCount={};preset.forEach(id=>presetCount[id]=(presetCount[id]||0)+1);
+  const savedFlat=getEffectiveDeck(chargeId);
+  const usedSoFar={};
+  const workingDeck=savedFlat.map(id=>{
+    const cap=presetCount[id]||0;
+    usedSoFar[id]=(usedSoFar[id]||0)+1;
+    return {id, origin:(usedSoFar[id]<=cap?'preset':'pool')};
+  });
+  // プリセット由来で今のデッキに残っていない分がサイドデッキ
+  const presetTagCount={};
+  workingDeck.forEach(o=>{ if(o.origin==='preset') presetTagCount[o.id]=(presetTagCount[o.id]||0)+1; });
+  const sideDeckArr=[];
+  Object.keys(presetCount).forEach(id=>{
+    const deficit=presetCount[id]-(presetTagCount[id]||0);
+    for(let i=0;i<deficit;i++) sideDeckArr.push(id);
+  });
+  return {workingDeck, sideDeckArr};
+}
+function openDeckEditFor(chargeId){
+  _deckEditChargeId=chargeId;
+  const st=_deckEditInitState(chargeId);
+  _deckEditWorkingDeck=st.workingDeck;
+  _deckEditSideDeckArr=st.sideDeckArr;
+  document.getElementById('deckedit-charge-panel').style.display='none';
+  document.getElementById('deckedit-edit-panel').style.display='flex';
+  renderDeckEditPanel();
+}
+// 所持している「入れ替え候補カード」のうち、まだデッキに使われていない残り枚数
+function _deckEditPoolRemaining(){
+  const owned=SAVE.unlockedCards||{};
+  const poolUsed={};
+  _deckEditWorkingDeck.forEach(o=>{ if(o.origin==='pool') poolUsed[o.id]=(poolUsed[o.id]||0)+1; });
+  const remain={};
+  Object.keys(owned).forEach(id=>{ remain[id]=Math.max(0,(owned[id]||0)-(poolUsed[id]||0)); });
+  return remain;
+}
+// ミニカード表示要素を作成（タップで拡大詳細＋決定/キャンセルのアクション確認）
+function _buildDeckEditCardEl(c, tapFn, badgeText, dim){
+  const d=document.createElement('div');
+  const fImg=FRAME_IMGS[c.rarity]||'';
+  if(fImg){d.style.backgroundImage='url('+fImg+')';d.style.backgroundSize='100% 100%';}
+  d.className='card '+c.rarity;
+  if(dim) d.style.opacity='.45';
+  const corner={common:'◆',uncommon:'◆',rare:'◆',epic:'◈',legendary:'★',gauge:'⚡',bougai:'☠️'}[c.rarity]||'◆';
+  d.innerHTML='<div class="card-band" style="'+(fImg?'display:none':'')+'""></div>'+
+    '<div class="card-inner">'+
+      '<div class="card-type-label card-type-'+c.type+'">'+({attack:'攻',shield:'防',heal:'回',skill:'技',curse:'呪',bougai:'妨'}[c.type]||'')+'</div>'+
+      '<div class="card-cost '+c.rarity+'">'+c.cost+'</div>'+
+      cardIconHtml(c)+
+      '<div class="card-name" style="font-size:'+_cardNameSize(c.name)+'px;">'+c.name+'</div>'+
+      '<div class="card-divider"></div>'+
+      '<div class="card-desc" style="font-size:'+_cardDescSize(c.shortDesc||c.desc.slice(0,18)+(c.desc.length>18?'…':''))+'px;">'+(c.shortDesc||c.desc.slice(0,18)+(c.desc.length>18?'…':''))+'</div>'+
+    '</div>'+
+    '<div class="card-corner tl">'+corner+'</div>'+
+    '<div class="card-corner br">'+corner+'</div>'+
+    (badgeText?('<div style="position:absolute;top:2px;right:2px;background:rgba(0,0,0,.75);color:#fff;font-size:9px;font-weight:bold;padding:1px 5px;border-radius:8px;">'+badgeText+'</div>'):'');
+  if(tapFn) bindCardTouch(d,c,tapFn,true);
+  return d;
+}
+function renderDeckEditPanel(){
+  const ct=CHARGE_TYPES[_deckEditChargeId];
+  const preset=CHARGE_DECKS[_deckEditChargeId]||STARTER;
+  const swapsUsed=_deckEditSideDeckArr.length;
+  const swapLimit=SAVE.deckSwapLimit||0;
+  const pointsUsed=_deckEditPointsUsed();
+  const pointLimit=SAVE.deckPointLimit||0;
+  const header=document.getElementById('deckedit-header');
+  header.innerHTML=
+    '<div><span style="font-size:13px;color:'+ct.color+';font-weight:bold;">'+ct.icon+' '+ct.name+'</span></div>'
+    +'<div style="text-align:right;font-size:10px;color:#ccc;">'
+    +'<div>枚数 <b style="color:'+(_deckEditWorkingDeck.length===preset.length?'#7ed6a0':'#ff8888')+';">'+_deckEditWorkingDeck.length+' / '+preset.length+'</b></div>'
+    +'<div>入れ替え <b style="color:'+(swapsUsed>=swapLimit?'#ff8888':'#7ed6a0')+';">'+swapsUsed+' / '+swapLimit+'</b></div>'
+    +'<div>デッキポイント <b style="color:'+(pointsUsed>=pointLimit?'#ff8888':'#7ed6a0')+';">'+pointsUsed+' / '+pointLimit+'</b></div>'
+    +'</div>';
+
+  // 現在のデッキ表示（タップで詳細→決定で外す。プール由来なら入れ替え候補へ、プリセット由来ならサイドデッキへ）
+  const curList=document.getElementById('deckedit-current-list');
+  curList.innerHTML='';
+  if(_deckEditWorkingDeck.length===0){
+    curList.innerHTML='<div style="font-size:10px;color:#666;">（デッキが空です）</div>';
+  } else {
+    _deckEditWorkingDeck.forEach((entry)=>{
+      const c=DB[entry.id]; if(!c) return;
+      const isPoolOrigin=entry.origin==='pool';
+      const canRemove=isPoolOrigin || (_deckEditSideDeckArr.length<swapLimit);
+      const badge=isPoolOrigin?'入替':'';
+      const el=_buildDeckEditCardEl(c, ()=>{
+        if(!canRemove){ _deckEditShowMsg('⚠️ 入れ替え上限に達しています（入れ替え '+_deckEditSideDeckArr.length+' / '+(SAVE.deckSwapLimit||0)+'）。これ以上プリセットのカードは外せません'); return; }
+        const i=_deckEditWorkingDeck.indexOf(entry);
+        if(i<0) return;
+        _deckEditWorkingDeck.splice(i,1);
+        if(entry.origin==='preset'){ _deckEditSideDeckArr.push(entry.id); _deckEditShowMsg('🗂️ 「'+c.name+'」をサイドデッキへ移動しました',true); }
+        else { _deckEditShowMsg('🎒 「'+c.name+'」を入れ替え候補へ戻しました',true); }
+        renderDeckEditPanel();
+      }, badge, !canRemove);
+      curList.appendChild(el);
+    });
+  }
+
+  // サイドデッキ表示（外したプリセットカード。タップで詳細→決定で現在のデッキへ戻す）
+  const sideList=document.getElementById('deckedit-side-list');
+  sideList.innerHTML='';
+  if(_deckEditSideDeckArr.length===0){
+    sideList.innerHTML='<div style="font-size:10px;color:#666;">（サイドデッキは空です）</div>';
+  } else {
+    const canReturn=_deckEditWorkingDeck.length<preset.length;
+    _deckEditSideDeckArr.forEach((id)=>{
+      const c=DB[id]; if(!c) return;
+      const el=_buildDeckEditCardEl(c, ()=>{
+        if(!canReturn){ _deckEditShowMsg('⚠️ デッキがすでに'+preset.length+'枚のため、これ以上戻せません。先に他のカードを外してください'); return; }
+        const i=_deckEditSideDeckArr.indexOf(id);
+        if(i<0) return;
+        _deckEditSideDeckArr.splice(i,1);
+        _deckEditWorkingDeck.push({id, origin:'preset'});
+        _deckEditShowMsg('📖 「'+c.name+'」を現在のデッキへ戻しました',true);
+        renderDeckEditPanel();
+      }, '', !canReturn);
+      sideList.appendChild(el);
+    });
+  }
+
+  // 入れ替え候補（所持カードのうち未使用分。タップで詳細→決定で現在のデッキへ入れる）
+  const poolRemain=_deckEditPoolRemaining();
+  const poolList=document.getElementById('deckedit-pool-list');
+  poolList.innerHTML='';
+  const poolTiles=[];
+  Object.keys(poolRemain).forEach(id=>{ for(let i=0;i<poolRemain[id];i++) poolTiles.push(id); });
+  if(poolTiles.length===0){
+    poolList.innerHTML='<div style="font-size:10px;color:#666;">入れ替え候補のカードがありません（ショップやクリア報酬で入手予定）</div>';
+  } else {
+    poolTiles.forEach(id=>{
+      const c=DB[id]; if(!c) return;
+      const cardPoint=getCardDeckPoint(id);
+      const hasRoom=_deckEditWorkingDeck.length<preset.length;
+      const withinPoints=(pointsUsed+cardPoint)<=pointLimit;
+      const canAdd=hasRoom&&withinPoints;
+      const el=_buildDeckEditCardEl(c, ()=>{
+        if(!hasRoom){ _deckEditShowMsg('⚠️ デッキがすでに'+preset.length+'枚のため、これ以上入れられません。先に他のカードを外してください'); return; }
+        if(!withinPoints){ _deckEditShowMsg('⚠️ デッキポイントが不足しています（'+pointsUsed+'+'+cardPoint+' / 上限'+pointLimit+'）'); return; }
+        _deckEditWorkingDeck.push({id, origin:'pool'});
+        _deckEditShowMsg('📖 「'+c.name+'」を現在のデッキへ入れました（DP'+cardPoint+'消費）',true);
+        renderDeckEditPanel();
+      }, 'DP'+cardPoint, !canAdd);
+      poolList.appendChild(el);
+    });
+  }
+
+  // 確定ボタン
+  const confirmBtn=document.getElementById('deckedit-confirm');
+  const canConfirm=_deckEditWorkingDeck.length===preset.length;
+  confirmBtn.style.opacity=canConfirm?'1':'.45';
+  confirmBtn.textContent=canConfirm?'確定して保存':'確定して保存（'+preset.length+'枚にしてください）';
+  confirmBtn.onclick=null;confirmBtn.ontouchend=null;
+  const doConfirm=(e)=>{
+    if(e&&e.stopPropagation)e.stopPropagation();
+    if(!canConfirm) return;
+    sfxConfirm();
+    SAVE.customDecks=SAVE.customDecks||{};
+    SAVE.customDecks[_deckEditChargeId]=_deckEditWorkingDeck.map(o=>o.id);
+    writeSaveData();
+    addLog&&addLog('🃏 デッキを保存しました','sys');
+    showDeckEditScreen(); // チャージ選択に戻る
+  };
+  confirmBtn.addEventListener('click',doConfirm);
+  confirmBtn.addEventListener('touchend',(e)=>{e.preventDefault();doConfirm(e);});
+}
+
+
 function showSoulSetupScreen(){
   renderSoulSetupContent();
-  bind('btn-soul-setup-close',()=>{ hideOv('ov-soul-setup'); });
+  bind('btn-soul-setup-close',()=>{ sfxBack(); hideOv('ov-soul-setup'); });
   showOv('ov-soul-setup');
 }
 function renderSoulSetupContent(){
@@ -9350,42 +9923,40 @@ function renderSoulSetupContent(){
   [1,2,3].forEach(cat=>{
     const cap=SAVE.soulCapacity[cat]||0;
     const used=getEquippedCostByCategory(cat);
+    const remaining=cap-used; // 使用できるコスト（残り枠）
+    const capColor=(remaining<=0)?'#ff5555':(used>=cap&&cap>0?'#ffd700':'#8ab8d8'); // 残り0（始めから0 or 使い切り）は赤字
     html+='<div style="background:rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 10px;font-family:sans-serif;">'
       +'<div style="font-size:12px;color:#e8dcc8;font-weight:bold;display:flex;justify-content:space-between;">'
       +'<span>'+SOUL_CATEGORY_NAMES[cat]+'</span>'
-      +'<span style="color:'+(used>=cap&&cap>0?'#ffd700':'#8ab8d8')+';">'+used+' / '+cap+'</span>'
+      +'<span style="color:'+capColor+';">'+used+' / '+cap+'</span>'
       +'</div>';
     const soulsInCat=Object.values(SOULS).filter(s=>s.category===cat);
-    soulsInCat.forEach(soul=>{
-      const owned=!!SAVE.soulsOwned[soul.id];
-      const equipped=SAVE.soulEquipped.includes(soul.id);
-      let rowStyle='display:flex;align-items:center;gap:8px;margin-top:6px;padding:6px 8px;border-radius:6px;';
-      let stateLabel='';
-      if(!owned){
-        rowStyle+='background:rgba(0,0,0,.7);opacity:.5;';
-        stateLabel='<span style="font-size:9px;color:#666;">未入手</span>';
-      } else if(equipped){
-        rowStyle+='background:rgba(50,30,80,.88);border:1px solid rgba(201,168,255,.5);cursor:pointer;touch-action:manipulation;';
-        stateLabel='<span style="font-size:9px;color:#c9a8ff;">装着中</span>';
-      } else {
-        rowStyle+='background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);cursor:pointer;touch-action:manipulation;';
-        stateLabel='<span style="font-size:9px;color:#999;">未装着</span>';
-      }
-      html+='<div class="soul-row" data-soul-id="'+soul.id+'" style="'+rowStyle+'">'
-        +'<span style="font-size:18px;">'+(owned?soul.icon:'❔')+'</span>'
-        +'<div style="flex:1;">'
-        +(owned
-          ? ('<div style="font-size:11px;color:#e8dcc8;">'+soul.name+'　<span style="color:#f0d020;">コスト'+soul.cost+'</span></div>'
-             +'<div style="font-size:9px;color:#999;">'+soul.desc+'</div>')
-          : ('<div style="font-size:11px;color:#777;">？？？のソウル</div>'
-             +'<div style="font-size:9px;color:#555;">未入手のため詳細は不明</div>')
-        )
-        +'</div>'
-        +stateLabel
-        +'</div>';
-    });
-    if(!soulsInCat.length){
+    const ownedSoulsInCat=soulsInCat.filter(s=>!!SAVE.soulsOwned[s.id]);
+    if(soulsInCat.length===0){
       html+='<div style="font-size:10px;color:#666;margin-top:6px;">（このカテゴリのソウルはまだありません）</div>';
+    } else if(ownedSoulsInCat.length===0){
+      html+='<div style="font-size:11px;color:#777;margin-top:6px;padding:8px;text-align:center;background:rgba(0,0,0,.4);border-radius:6px;">未所持</div>';
+    } else {
+      ownedSoulsInCat.forEach(soul=>{
+        const equipped=SAVE.soulEquipped.includes(soul.id);
+        let rowStyle='display:flex;align-items:center;gap:8px;margin-top:6px;padding:6px 8px;border-radius:6px;';
+        let stateLabel='';
+        if(equipped){
+          rowStyle+='background:rgba(50,30,80,.88);border:1px solid rgba(201,168,255,.5);cursor:pointer;touch-action:manipulation;';
+          stateLabel='<span style="font-size:9px;color:#c9a8ff;">装着中</span>';
+        } else {
+          rowStyle+='background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.15);cursor:pointer;touch-action:manipulation;';
+          stateLabel='<span style="font-size:9px;color:#999;">未装着</span>';
+        }
+        html+='<div class="soul-row" data-soul-id="'+soul.id+'" style="'+rowStyle+'">'
+          +'<span style="font-size:18px;">'+soul.icon+'</span>'
+          +'<div style="flex:1;">'
+          +'<div style="font-size:11px;color:#e8dcc8;">'+soul.name+'　<span style="color:#f0d020;">コスト'+soul.cost+'</span></div>'
+          +'<div style="font-size:9px;color:#999;">'+soul.desc+'</div>'
+          +'</div>'
+          +stateLabel
+          +'</div>';
+      });
     }
     html+='</div>';
   });
@@ -9394,7 +9965,8 @@ function renderSoulSetupContent(){
   content.querySelectorAll('.soul-row').forEach(row=>{
     const soulId=row.getAttribute('data-soul-id');
     if(!SAVE.soulsOwned[soulId]) return; // 未入手は操作不可
-    bindSafe(row,()=>{
+    bindTapSwipe(row,()=>{
+      sfxSelect();
       const ok=toggleSoulEquip(soulId);
       if(!ok){
         addLog&&addLog('💠 系統の上限を超えるため装着できません','sys');
@@ -9407,8 +9979,8 @@ function showAchievementsScreen(){
   renderAchievementsContent();
   const closeBtn=document.getElementById('btn-achievements-close');
   if(closeBtn){
-    closeBtn.onclick=(e)=>{e.stopPropagation();hideOv('ov-achievements');};
-    closeBtn.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();hideOv('ov-achievements');};
+    closeBtn.onclick=(e)=>{e.stopPropagation();sfxBack();hideOv('ov-achievements');};
+    closeBtn.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();sfxBack();hideOv('ov-achievements');};
   }
   showOv('ov-achievements');
 }
@@ -9461,16 +10033,16 @@ function showGameDataScreen(){
   const tabC=document.getElementById('gamedata-tab-card');
   const closeBtn=document.getElementById('btn-gamedata-close');
   if(tabM){
-    tabM.onclick=(e)=>{e.stopPropagation();_gamedataTab='monster';renderGameDataContent();};
-    tabM.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();_gamedataTab='monster';renderGameDataContent();};
+    tabM.onclick=(e)=>{e.stopPropagation();sfxSelect();_gamedataTab='monster';renderGameDataContent();};
+    tabM.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();sfxSelect();_gamedataTab='monster';renderGameDataContent();};
   }
   if(tabC){
-    tabC.onclick=(e)=>{e.stopPropagation();_gamedataTab='card';renderGameDataContent();};
-    tabC.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();_gamedataTab='card';renderGameDataContent();};
+    tabC.onclick=(e)=>{e.stopPropagation();sfxSelect();_gamedataTab='card';renderGameDataContent();};
+    tabC.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();sfxSelect();_gamedataTab='card';renderGameDataContent();};
   }
   if(closeBtn){
-    closeBtn.onclick=(e)=>{e.stopPropagation();hideOv('ov-gamedata');};
-    closeBtn.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();hideOv('ov-gamedata');};
+    closeBtn.onclick=(e)=>{e.stopPropagation();sfxBack();hideOv('ov-gamedata');};
+    closeBtn.ontouchend=(e)=>{e.stopPropagation();e.preventDefault();sfxBack();hideOv('ov-gamedata');};
   }
   showOv('ov-gamedata');
 }
@@ -9489,7 +10061,8 @@ function renderGameDataContent(){
 const ACTION_DESC={
   atk:        {name:'通常攻撃', desc:'通常の攻撃。'},
   big:        {name:'大攻撃💥', desc:'通常の2倍のダメージを与える強力な攻撃。'},
-  poisonatk:  {name:'毒攻撃☠️', desc:'攻撃に加え、実際に与えたダメージの半分（切り捨て）分の毒を付与する（無敵状態では無効化される）。'},
+  poisonatk:  {name:'毒攻撃☠️', desc:'攻撃に加え、実際に与えたダメージと同数の毒を付与する（無敵状態では無効化される）。'},
+  moudokuatk: {name:'猛毒攻撃☠️💥', desc:'通常の2倍のダメージを与え、実際に与えたダメージと同数の毒を付与する強力な毒攻撃（無敵状態では無効化される）。'},
   drain:      {name:'吸収攻撃🩸', desc:'攻撃に加え、自身の最大HPの10%を吸収して回復する。'},
   def:        {name:'防御🛡️', desc:'シールドを+12する。'},
   bigdef:     {name:'大防御🛡️🛡️', desc:'シールドを+24する。'},
